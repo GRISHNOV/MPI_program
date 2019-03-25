@@ -43,10 +43,10 @@ int main(int argc, char **argv)
         {
 
             LONG_TYPE sum_res = 0;
-            for (i = 1; i <= 4; i++)
+            for (i = 1; i <= 250; i++)
             {
                 //fact_array[i] = fact_range(i, i);
-                sum_res = sum_res + 1 / fact_range(i, i);
+                sum_res = sum_res + 1.0 / fact_range(i, i);
             }
 
             MPI_Send(&sum_res, 1, MPI_LONG_DOUBLE, 0, mymessage, MPI_COMM_WORLD);
@@ -54,30 +54,30 @@ int main(int argc, char **argv)
         if (rank == 2)
         {
             LONG_TYPE sum_res = 0;
-            for (i = 5; i <= 8; i++)
+            for (i = 250; i <= 500; i++)
             {
                 //fact_array[i] = fact_range(i, i);
-                sum_res = sum_res + 1 / fact_range(i, i);
+                sum_res = sum_res + 1.0 / fact_range(i, i);
             }
             MPI_Send(&sum_res, 1, MPI_LONG_DOUBLE, 0, mymessage, MPI_COMM_WORLD);
         }
         if (rank == 3)
         {
             LONG_TYPE sum_res = 0;
-            for (i = 9; i <= 12; i++)
+            for (i = 500; i <= 750; i++)
             {
                 //fact_array[i] = fact_range(i, i);
-                sum_res = sum_res + 1 / fact_range(i, i);
+                sum_res = sum_res + 1.0 / fact_range(i, i);
             }
             MPI_Send(&sum_res, 1, MPI_LONG_DOUBLE, 0, mymessage, MPI_COMM_WORLD);
         }
         if (rank == 4)
         {
             LONG_TYPE sum_res = 0;
-            for (i = 13; i <= 17; i++)
+            for (i = 750; i <= 1000; i++)
             {
                 //fact_array[i] = fact_range(i, i);
-                sum_res = sum_res + 1 / fact_range(i, i);
+                sum_res = sum_res + 1.0 / fact_range(i, i);
             }
             MPI_Send(&sum_res, 1, MPI_LONG_DOUBLE, 0, mymessage, MPI_COMM_WORLD);
         }
@@ -94,10 +94,10 @@ int main(int argc, char **argv)
 
         for (j = 1; j <= 4; j++)
         {
-            printf("Sum from process = %i => %.16Lf\n", j, sum_buf[j]);
+            printf("Sum from process = %i => %.4000Lf\n", j, sum_buf[j]);
             sum_fin = sum_fin + sum_buf[j];
         }
-        printf("EXP =  %.16Lf\n", sum_fin);
+        printf("EXP =  %.4000Lf\n", sum_fin);
     }
 
     MPI_Finalize();
